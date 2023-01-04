@@ -4,22 +4,22 @@ import ProductRepository from "./product.repository";
 import Product from "../../../../domain/product/entity/product";
 
 describe("Product repository tests", () => {
-    let sequileze: Sequelize;
+    let sequelize: Sequelize;
 
     beforeEach(async() => {
-        sequileze = new Sequelize({
+        sequelize = new Sequelize({
             dialect: 'sqlite',
             storage: ':memory:',
             logging: false,
             sync: { force: true },
         });
 
-        sequileze.addModels([ProductModel]);
-        await sequileze.sync();
+        sequelize.addModels([ProductModel]);
+        await sequelize.sync();
     });
 
     afterEach(async() => {
-        await sequileze.close();
+        await sequelize.close();
     });
 
     it("should create a product", async () => {

@@ -13,22 +13,22 @@ const input = {
 };
 
 describe("Test create product use case", () => {
-    let sequileze: Sequelize;
+    let sequelize: Sequelize;
 
     beforeEach(async() => {
-        sequileze = new Sequelize({
+        sequelize = new Sequelize({
             dialect: 'sqlite',
             storage: ':memory:',
             logging: false,
             sync: { force: true },
         });
 
-        sequileze.addModels([ProductModel]);
-        await sequileze.sync();
+        sequelize.addModels([ProductModel]);
+        await sequelize.sync();
     });
 
     afterEach(async() => {
-        await sequileze.close();
+        await sequelize.close();
     });
 
     describe("Unit Test update product use case", () => {

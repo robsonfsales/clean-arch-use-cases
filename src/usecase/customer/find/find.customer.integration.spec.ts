@@ -7,22 +7,22 @@ import Address from "../../../domain/customer/value-object/Address";
 import FindCustomerUseCase from "./find.customer.usecase";
 
 describe("Test find customer use case", () => {
-    let sequileze: Sequelize;
+    let sequelize: Sequelize;
 
     beforeEach(async() => {
-        sequileze = new Sequelize({
+        sequelize = new Sequelize({
             dialect: 'sqlite',
             storage: ':memory:',
             logging: false,
             sync: { force: true },
         });
 
-        sequileze.addModels([CustomerModel]);
-        await sequileze.sync();
+        sequelize.addModels([CustomerModel]);
+        await sequelize.sync();
     });
 
     afterEach(async() => {
-        await sequileze.close();
+        await sequelize.close();
     });
 
     it("should find a customer", async () => {

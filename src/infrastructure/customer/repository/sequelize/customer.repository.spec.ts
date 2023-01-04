@@ -5,22 +5,22 @@ import Customer from "../../../../domain/customer/entity/customer";
 import Address from "../../../../domain/customer/value-object/Address";
 
 describe("Customer repository tests", () => {
-    let sequileze: Sequelize;
+    let sequelize: Sequelize;
 
     beforeEach(async() => {
-        sequileze = new Sequelize({
+        sequelize = new Sequelize({
             dialect: 'sqlite',
             storage: ':memory:',
             logging: false,
             sync: { force: true },
         });
 
-        sequileze.addModels([CustomerModel]);
-        await sequileze.sync();
+        sequelize.addModels([CustomerModel]);
+        await sequelize.sync();
     });
 
     afterEach(async() => {
-        await sequileze.close();
+        await sequelize.close();
     });
 
     it("should create a customer", async () => {

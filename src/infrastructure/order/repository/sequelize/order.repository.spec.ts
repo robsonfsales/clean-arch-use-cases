@@ -13,22 +13,22 @@ import OrderModel from "./order.model";
 import ProductRepository from "../../../product/repository/sequelize/product.repository";
 
 describe("Order repository tests", () => {
-    let sequileze: Sequelize;
+    let sequelize: Sequelize;
 
     beforeEach(async() => {
-        sequileze = new Sequelize({
+        sequelize = new Sequelize({
             dialect: 'sqlite',
             storage: ':memory:',
             logging: false,
             sync: { force: true },
         });
 
-        sequileze.addModels([CustomerModel, OrderModel, OrderItemModel, ProductModel]);
-        await sequileze.sync();
+        sequelize.addModels([CustomerModel, OrderModel, OrderItemModel, ProductModel]);
+        await sequelize.sync();
     });
 
     afterEach(async() => {
-        await sequileze.close();
+        await sequelize.close();
     });
 
 

@@ -28,13 +28,17 @@ export default class ProductRepository implements ProductRepositoryInterface {
     }
 
     async find(id: string): Promise<ProductInterface> {
-        const productModel = await ProductModel.findOne({ where: { id }});
+        try {
+            const productModel = await ProductModel.findOne({ where: { id }});
 
-        return new Product(
-            productModel.id,
-            productModel.name,
-            productModel.price
-        );
+            return new Product(
+                productModel.id,
+                productModel.name,
+                productModel.price
+            );
+        }catch (error) {
+            throw new Error("Product not found");
+        }
     }
 
     async findAll(): Promise<ProductInterface[]> {

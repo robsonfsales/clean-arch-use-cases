@@ -5,22 +5,22 @@ import FindProductUseCase from "./find.product.usecase";
 import Product from "../../../domain/product/entity/product";
 
 describe("Test create product use case", () => {
-    let sequileze: Sequelize;
+    let sequelize: Sequelize;
 
     beforeEach(async() => {
-        sequileze = new Sequelize({
+        sequelize = new Sequelize({
             dialect: 'sqlite',
             storage: ':memory:',
-            logging: false,
+            logging: false,            
             sync: { force: true },
         });
 
-        sequileze.addModels([ProductModel]);
-        await sequileze.sync();
+        sequelize.addModels([ProductModel]);
+        await sequelize.sync();
     });
 
-    afterEach(async() => {
-        await sequileze.close();
+    afterAll(async() => {
+        await sequelize.close();
     });
 
     it("should find a product", async () => {
@@ -43,5 +43,18 @@ describe("Test create product use case", () => {
 
         const result = await productFindUseCase.execute(input);
         expect(result).toEqual(output);
+    });
+
+    it("should not find a product", async () => {
+        const productRepository = new ProductRepository();
+        const usecase = new FindProductUseCase(productRepository);
+
+        const input = {
+            id: "456",
+        }
+
+        expect(() => {
+            return usecase.execute(input);
+        }).rejects.toThrow("Product not found");
     });
 });
