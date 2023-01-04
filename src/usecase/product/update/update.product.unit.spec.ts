@@ -29,22 +29,24 @@ describe("Unit Test update product use case", () => {
         expect(output).toEqual(input);
     });
 
+    it("should throw an error when update product price is less than 0", async () => {
+        const productRepository = MockRepository();
+        const productUpdateUseCase = new UpdateProductUseCase(productRepository);
+        input.name = "Product A1",
+        input.price = -1;
+
+        await expect(productUpdateUseCase.execute(input)).rejects.toThrow("product: Price must be greater than 0");
+    });
+
     it("should throw an error when update product name is missing", async () => {
         const productRepository = MockRepository();
         const productUpdateUseCase = new UpdateProductUseCase(productRepository);
         input.name = "";
         input.price = 15;
 
-        await expect(productUpdateUseCase.execute(input)).rejects.toThrow("Name is required");
+        await expect(productUpdateUseCase.execute(input)).rejects.toThrow("product: Name is required");
     });
 
-    it("should throw an error when update product price is less than 0", async () => {
-        const productRepository = MockRepository();
-        const productUpdateUseCase = new UpdateProductUseCase(productRepository);
-        input.name = "Product A1 Updated",
-        input.price = -1;
-
-        await expect(productUpdateUseCase.execute(input)).rejects.toThrow("Price must be greater than 0");
-    });
+    
 
 });
