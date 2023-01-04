@@ -1,7 +1,7 @@
 
-import CustomerAddressChangedEvent from "../../customer/event/customer-address-change.event";
-import ConsoleLogWhenCostumerAddressIsChangedHandler from "../../customer/event/handler/console-log-customer-address-is-changed.handler";
-import EventDispatcher from "./event-dispatcher";
+import CustomerAddressChangedEvent from "./customer-address-change.event";
+import ConsoleLogWhenCostumerAddressIsChangedHandler from "./handler/console-log-customer-address-is-changed.handler";
+import EventDispatcher from "../../@shared/event/event-dispatcher";
 
 describe("Domain customer address changed events tests", () => {
     it("should register an customer address changed event handler", () => {

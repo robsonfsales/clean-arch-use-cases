@@ -1,7 +1,7 @@
-import CustomerCreatedEvent from "../../customer/event/customer-created.event";
-import ConsoleLog1WhenCostumerIsCreatedHandler from "../../customer/event/handler/console-log1-customer-is-created.handler";
-import ConsoleLog2WhenCostumerIsCreatedHandler from "../../customer/event/handler/console-log2-customer-is-created.handler";
-import EventDispatcher from "./event-dispatcher";
+import CustomerCreatedEvent from "./customer-created.event";
+import ConsoleLog1WhenCostumerIsCreatedHandler from "./handler/console-log1-customer-is-created.handler";
+import ConsoleLog2WhenCostumerIsCreatedHandler from "./handler/console-log2-customer-is-created.handler";
+import EventDispatcher from "../../@shared/event/event-dispatcher";
 
 describe("Domain customer events tests", () => {
     it("should register an customer created event handler", () => {
